@@ -1,5 +1,7 @@
 # Aplicação Node com Docker 
 
+![hospedagem_cloud](https://github.com/rafaelfabri/docker_node_exemplo/blob/main/Blank%20diagram.png)
+
 ## Sem Network
 
 ```bash     
