@@ -14,6 +14,7 @@ docker run -d --rm -p 80:80 --name backend --network nodeapi rafaelfabri/backend
 
 ```bash     
 docker run  -p 3000:3000 --rm --name frontend --network nodeapi --it rafaelfabri/frontend_node:1.1
+```
 
 ## Com network
 
@@ -31,8 +32,7 @@ docker run -d -p 80:80     --rm --name backend  --network nodeapi rafaelfabri/ba
 
 ```bash     
 docker run    -p 3000:3000 --rm --name frontend --it rafaelfabri/frontend_node:1.1
-```bash
-
+```
 
 
 ## Com network e volumes
