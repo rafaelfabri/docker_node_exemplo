@@ -1,0 +1,51 @@
+version: "3.8"
+services:
+  mongodb:
+    container_name: mongodb 	
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    #enviroment:
+      #MONGO_INITDB_ROOT_USERNAME: max 
+      #MONGO_INITDB_ROOT_USERNAME: secret
+      # - MONGO_INITDB_ROOT_USERNAME=max 
+    env_file:
+      - env/mongo.env  
+    #networks:
+    #  - nodeapi
+  
+  backend:
+    #build: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      #args:
+      #  some-arg: 1
+    ports:
+      # 'external:internal-container'
+      - '80:80'
+    volumes:
+      - logs:/app/logs
+      - ./backend/:/app
+      - /app/node_modules
+    env_file:
+      - env/backend.env
+    depends_on:
+      - mongodb  
+              
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    #esses dois comandos vai fazer q o container frontend start como iterativo
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+      
+volumes:
+  data:
+  logs:
+  
